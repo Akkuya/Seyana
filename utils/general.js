@@ -18,3 +18,5 @@ export const getUserFromMention = (mention, client) => {
     return client.users.cache.get(mention)
   }
 }
+
+export const sanitize = text => text.replace(/@/g, '@' + String.fromCharCode(8203))

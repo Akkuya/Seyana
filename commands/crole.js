@@ -1,11 +1,10 @@
 import * as utils from '../utils/index.js'
 
 export default async ({ message, args }) => {
-  const croles = await utils.json.croles()
+  const croles = utils.json.getCRoles
   if (!croles.hasOwnProperty(message.author.id) || !args[1]) return
-  const role = message.guild.roles.cache.get(croles[message.author.id]),
-        color = role.color, 
-        name = role.name
+  const role = message.guild.roles.cache.get(croles[message.author.id])
+  const beforeRole = { ...role } // shallow copy
 
   switch (args.shift()) {
     case 'color':
@@ -18,7 +17,7 @@ export default async ({ message, args }) => {
               'description': [
                 `**Role Name**: \`${role.name}\``,
                 `**New Color**: \`${role.color}\``,
-                `**Old Color**: \`${color}\``
+                `**Old Color**: \`${beforeRole.color}\``
               ].join('\n'),
               'footer': {
                 'icon_url': message.author.avatarURL(),
@@ -38,7 +37,7 @@ export default async ({ message, args }) => {
               'title': 'Role Updated',
               'description': [
                 `**New Name**: \`${role.name}\``,
-                `**Old Name**: \`${name}\``,
+                `**Old Name**: \`${beforeRole.name}\``,
                 `**Role Color**: \`${role.color}\``
               ].join('\n'),
               'footer': {

@@ -10,9 +10,9 @@ client.on('message', async (message) => {
   /* Groovy Deletor */
   if (message.channel.id !== '730105473696530462') {
     if (message.author.id === '234395307759108106') {
-      await utils.time.sleep(5000), message.delete().catch(console.error)
+      await utils.time.sleep(2000), message.delete().catch(console.error)
     } else if (message.content.startsWith('>>')) {
-      message.delete(), await utils.time.sleep(5000)
+      message.delete(), await utils.time.sleep(2000)
       message.channel.messages.fetch().then(messages => {
         const botMessages = messages.filter(msg => msg.author.id === '234395307759108106')
         message.channel.bulkDelete(botMessages)
@@ -27,7 +27,7 @@ client.on('message', async (message) => {
   let args = commandBody.split(' ')
   let command = args.shift().toLowerCase()
 
-  Object.keys(commands).map(mapcmd => {
+  Object.keys(commands).forEach(mapcmd => {
     if (command === mapcmd) {
       commands[mapcmd]({
         client, message, args
@@ -80,6 +80,21 @@ client.on('messageUpdate', (message) => {
     delete snipes[message.id]
     utils.json.writeSnipes(snipes)
   }, 3e4)
+})
+
+/* Join/Leave */
+client.on('guildMemberAdd', (member) => {
+  if (member.guild.id !== secrets.guildID) return
+
+  const channel = member.guild.channels.cache.get(secrets.welcomeChannel)
+  channel.send(utils.json.randomWelcome(`<@${member.user.id}>`))
+})
+
+client.on('guildMemberRemove', (member) => {
+  if (member.guild.id !== secrets.guildID) return
+
+  const channel = member.guild.channels.cache.get(secrets.welcomeChannel)
+  channel.send(utils.json.randomGoodbye(member.user.tag))
 })
 
 client.login(secrets.token)

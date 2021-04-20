@@ -1,7 +1,7 @@
 import * as utils from '../utils/index.js'
 
 // stolen from stack overflow :3
-export default async ({ message, args }) => {
+export default async ({ client, message, args }) => {
   if (message.author.id === '474322346937810955') {
     try {
       const code = args.join(' ')

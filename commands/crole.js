@@ -11,17 +11,17 @@ export default async ({ message, args }) => {
       role.setColor(args[0])
         .then(() => {
           message.channel.send({
-            'embed': {
-              'color': 16508079,
-              'title': 'Role Updated',
-              'description': [
+            embed: {
+              color: 16508079,
+              title: 'Role Updated',
+              description: [
                 `**Role Name**: \`${role.name}\``,
                 `**New Color**: \`${role.color}\``,
                 `**Old Color**: \`${beforeRole.color}\``
               ].join('\n'),
-              'footer': {
-                'icon_url': message.author.avatarURL(),
-                'text': `Action Evoked by ${message.author.tag}`
+              footer: {
+                icon_url: message.author.avatarURL(),
+                text: `Action Evoked by ${message.author.tag}`
               }
             }
           })
@@ -32,17 +32,17 @@ export default async ({ message, args }) => {
       role.setName(args.join(' '))
         .then(() => {
           message.channel.send({
-            'embed': {
-              'color': 16508079,
-              'title': 'Role Updated',
-              'description': [
+            embed: {
+              color: 16508079,
+              title: 'Role Updated',
+              description: [
                 `**New Name**: \`${role.name}\``,
                 `**Old Name**: \`${beforeRole.name}\``,
                 `**Role Color**: \`${role.color}\``
               ].join('\n'),
-              'footer': {
-                'icon_url': message.author.avatarURL(),
-                'text': `Action Evoked by ${message.author.tag}`
+              footer: {
+                icon_url: message.author.avatarURL(),
+                text: `Action Evoked by ${message.author.tag}`
               }
             }
           })

@@ -8,8 +8,8 @@ export default ({ client, message, args }) => {
 
     if (message.mentions.members.length !== 0) console.log('helo')
 
-    let mentionOne = utils.general.getUserFromMention(args[0].match(/<@(!?|&?)\d+>/gi), client)
-    let mentionTwo = utils.general.getUserFromMention(args[1].match(/<@(!?|&?)\d+>/gi), client)
+    let mentionOne = utils.general.getUserFromMention(args[0], client)
+    let mentionTwo = utils.general.getUserFromMention(args[1], client)
 
     if (mentionOne) args[0] = mentionOne['username']
     if (mentionTwo) args[1] = mentionTwo['username']

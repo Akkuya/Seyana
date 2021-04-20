@@ -5,7 +5,7 @@ export default ({ message }) => {
     embed: {
       title: 'fukc yuo i htae yuo',
       color: 16508079,
-      footer: { 'text': `fxukc yuo` },
+      footer: { text: `fxukc yuo` },
       fields: [{
         name: 'fuxck yuo',
         value: 'yuos sjuck',

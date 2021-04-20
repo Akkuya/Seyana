@@ -7,16 +7,11 @@ export const randomString = () => {
 
 export const getUserFromMention = (mention, client) => {
   if (!mention) return
-  mention = mention.join('')
+  if (Array.isArray(mention)) mention = mention.join('')
 
-  if (mention.startsWith('<@') && mention.endsWith('>')) {
-    mention = mention.slice(2, -1)
-
-    if (mention.startsWith('!'))
-      mention = mention.slice(1)
-
-    return client.users.cache.get(mention)
-  }
+  const matches = mention.match(/<@(?:!?|&?)(\d+)>/i)
+  if (matches) mention = matches[1]
+  return client.users.cache.get(mention)
 }
 
 export const sanitize = text => text.replace(/@/g, '@' + String.fromCharCode(8203))

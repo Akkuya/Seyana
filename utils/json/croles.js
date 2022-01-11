@@ -12,6 +12,7 @@ export default {
   '700460555026038795' : '815312295856832533', // Chloe
   '318884801916567552' : '820766653930405979', // Zerro
   '434096457927360513' : '772613763349741568', // Awaiz
+  '737377683687735347' : '924385864874868766', // Akkuya
 }
 
 // I'm using this like a js export because JSON files don't permit comments
